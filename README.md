@@ -1,2 +1,2 @@
 # BookService
-Concept of exclusive lend of unique books
+Import and lend books. Concurrency pattern db, rest API, security, controller IT
