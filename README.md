@@ -1,5 +1,5 @@
 # BookService
-Imported and lend  books. Concurrency pattern db, rest API, security, controller IT
+Import and lend  books. Concurrency pattern db, rest API, security, controller IT
 
 ## 1. Setup local dev
 
