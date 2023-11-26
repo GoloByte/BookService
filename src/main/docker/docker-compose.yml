@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  golo-book-service-app:
+
+    image: 'golo-book-service:latest'
+    build:
+      context: .
+    container_name: golo-book-service-app
+    depends_on:
+      - golo-book-service-db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://golo-book-service-db:5432/golo-book-service-db
+      - SPRING_DATASOURCE_USERNAME=golo
+      - SPRING_DATASOURCE_PASSWORD=qFkJj92N9A4E
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+    restart: always
+    ports:
+      - 40177:40277
+
+  golo-book-service-db:
+    image: 'postgres:15'
+    container_name: golo-book-service-db
+    environment:
+      - POSTGRES_DB=golo-book-service-db
+      - POSTGRES_USER=golo
+      - POSTGRES_PASSWORD=qFkJj92N9A4E
+    restart: always
+
