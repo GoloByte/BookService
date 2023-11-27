@@ -18,7 +18,6 @@ import java.util.List;
 @Component
 @AllArgsConstructor
 public class Core {
-
     private final Lend lend;
     private final Importer importer;
     private final ChargeRepository chargeRepository;
