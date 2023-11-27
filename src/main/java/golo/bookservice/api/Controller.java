@@ -21,7 +21,7 @@ public class Controller {
     /**
      * import a books source file in database
      *
-     * @param file with codes
+     * @param file with books
      * @return Charge
      */
     @PostMapping(value = "import", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
@@ -40,9 +40,9 @@ public class Controller {
     }
 
     /**
-     * getAmount returns amount of available codes
+     * getAmount returns amount of available books
      *
-     * @return amount of available codes
+     * @return amount of available books
      */
     @GetMapping("available-quantity")
     public long getAvailableQuantity() {

@@ -32,9 +32,9 @@ public class Lend {
                     booksEo.setLendOut(true);
                 }).toList();
 
-        List<BookEo> activationCodesUpdated = bookRepository.saveAll(booksEoToUpdate);
+        List<BookEo> booksUpdated = bookRepository.saveAll(booksEoToUpdate);
 
-        return activationCodesUpdated
+        return booksUpdated
                 .stream()
                 .map(bookMapper::map)
                 .toList();
