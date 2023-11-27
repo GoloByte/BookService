@@ -51,6 +51,7 @@ class CoreTest {
         assertThat(core.getAvailableQuantity()).isEqualTo(20);
 
         List<Book> books = core.lendOut(2);
+        assertThat(books).hasSize(2);
 
         assertThat(core.getAvailableQuantity()).isEqualTo(18);
 
