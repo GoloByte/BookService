@@ -36,10 +36,10 @@ public class Importer {
 
         try (BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))) {
             String line;
-            boolean skipColumnHead = true;
+            boolean skip = true;
             while ((line = br.readLine()) != null) {
-                if (skipColumnHead) {
-                    skipColumnHead = false;
+                if (skip) {
+                    skip = false;
                     continue;
                 }
                 try (Scanner rowScanner = new Scanner(line)) {
