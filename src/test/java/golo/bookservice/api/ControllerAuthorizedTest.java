@@ -25,17 +25,21 @@ class ControllerAuthorizedTest {
 
     @Test
     void controllerAuthorized() {
-        // Construct Basic Authentication header
-        String auth = username + ":" + password;
-        byte[] encodedAuth = Base64.getEncoder().encode(auth.getBytes());
-        String authHeader = "Basic " + new String(encodedAuth);
-
         // Make the request with Basic Authentication header
         Integer integer = RestClient.create().get()
                 .uri("http://localhost:" + port + "/books/available-quantity")
-                .header("Authorization", authHeader)
+                .header("Authorization", getAuthHeader())
                 .retrieve().body(Integer.class);
 
         Assertions.assertNotNull(integer);
+    }
+
+
+
+    private String getAuthHeader() {
+        // Construct Basic Authentication header
+        String auth = username + ":" + password;
+        byte[] encodedAuth = Base64.getEncoder().encode(auth.getBytes());
+        return "Basic " + new String(encodedAuth);
     }
 }
