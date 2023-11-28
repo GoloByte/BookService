@@ -17,17 +17,6 @@
         <start-class>main.java.golo.book-service.Application</start-class>
     </properties>
     <dependencies>
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.boot</groupId>-->
-<!--            <artifactId>spring-boot-starter-security</artifactId>-->
-<!--            <version>3.2.0</version>-->
-<!--        </dependency>-->
-
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.boot</groupId>-->
-<!--            <artifactId>spring-boot-starter-security</artifactId>-->
-<!--            <version>3.2.0</version>-->
-<!--        </dependency>-->
         <!-- web -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
