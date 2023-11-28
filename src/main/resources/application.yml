@@ -9,10 +9,10 @@ spring:
 
   application:
     name: book-service
-  security:
-    user:
-      name: golo
-      password: golo
+#  security:
+#    user:
+#      name: golo
+#      password: golo
 
 
 springdoc.swagger-ui.path: /swagger-ui/index.html
