@@ -12,6 +12,7 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.util.MultiValueMap;
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.client.RestClient;
+
 import java.io.IOException;
 import java.util.Objects;
 
@@ -30,8 +31,7 @@ class ControllerTest {
 
         // POST
         Charge charge = RestClient.create()
-                .post()
-                .uri("http://localhost:" + port + "/books/import")
+                .post().uri("http://localhost:" + port + "/books/import")
                 .body(file)
                 .retrieve()
                 .body(Charge.class);

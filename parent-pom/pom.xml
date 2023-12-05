@@ -10,7 +10,7 @@
 
     <properties>
         <!-- Project -->
-        <java.version>17</java.version>
+        <java.version>21</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -40,6 +40,10 @@
         <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
         <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
         <sonar.jacoco.reportPath>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPath>
+
+        <!-- Monitoring -->
+        <micrometer.registry.prometheus.version>1.12.0</micrometer.registry.prometheus.version>
+<!--        <spring.doc.openapi.version>1.7.0</spring.doc.openapi.version>-->
 
         <!-- Test -->
         <h2database.version>2.2.220</h2database.version>

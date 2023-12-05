@@ -2,9 +2,24 @@
 <project version="4">
   <component name="RemoteRepositoriesConfiguration">
     <remote-repository>
+      <option name="id" value="nexus" />
+      <option name="name" value="Nexus repository" />
+      <option name="url" value="http://irrelevant" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="cgm.clickdoc.sdk.release.maven" />
+      <option name="name" value="Global Resolving Chain for CGM" />
+      <option name="url" value="https://artifactory.cgm.ag:443/artifactory/cgm.clickdoc.sdk.release.maven" />
+    </remote-repository>
+    <remote-repository>
       <option name="id" value="central" />
       <option name="name" value="Central Repository" />
       <option name="url" value="https://repo.maven.apache.org/maven2" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="cgm.life.partner.release" />
+      <option name="name" value="Global Resolving Chain for CGM" />
+      <option name="url" value="https://artifactory.cgm.ag:443/artifactory/cgm.life.partner.release" />
     </remote-repository>
     <remote-repository>
       <option name="id" value="gitlab-maven" />

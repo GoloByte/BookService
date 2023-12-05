@@ -6,7 +6,7 @@ Import and lend books. Concurrency pattern db, rest controller test with spring 
 ### 1.1 Database
 
 ```
-docker run -d --name golo-book-service-db-dev -e TZ=UTC -p 30432:5432 -e POSTGRES_DB=golo-book-service-db -e POSTGRES_USER=golo -e POSTGRES_PASSWORD=qFkJj92N9A4E --restart=always postgres:15
+docker run -d --name golo-book-service-db-dev -e TZ=UTC -p 31432:5432 -e POSTGRES_DB=golo-book-service-db -e POSTGRES_USER=golo -e POSTGRES_PASSWORD=qFkJj92N9A4E --restart=always postgres:15
 
 ```
 

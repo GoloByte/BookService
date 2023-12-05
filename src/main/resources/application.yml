@@ -1,35 +1,40 @@
 #application
 server:
-  port: 40277
+  port: 50200
   tomcat.threads.max: 20
 
 spring:
   main:
     lazy-initialization: true
-
   application:
     name: book-service
+  jackson:
+    default-property-inclusion: NON_NULL
+    jackson:
+      default-property-inclusion: NON_NULL
+  servlet:
+    multipart:
+      max-file-size: 25MB
+      max-request-size: 25MB
+  datasource:
+    url: jdbc:postgresql://localhost:31432/golo-book-service-db
+    username: ${DB_USERNAME:golo}
+    password: ${DB_PASSWORD:qFkJj92N9A4E}
+  jpa:
+    open-in-view: false
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
 
+springdoc:
+  show-actuator: true
+  api-docs:
+    enabled: true
+  swagger-ui:
+    filter: true
+    path: /swagger-ui/index.html
 
-springdoc.swagger-ui.path: /swagger-ui/index.html
-springdoc.enable-native-support: "true"
-
-
-#database
-spring.datasource.url: jdbc:postgresql://localhost:30432/golo-book-service-db
-spring.datasource.username: ${DB_USERNAME:golo}
-spring.datasource.password: ${DB_PASSWORD:qFkJj92N9A4E}
-
-
-#spring.jpa.show-sql: true
-#spring:
-#  jpa:
-#    properties:
-#      hibernate:
-#        format_sql: true
-
-spring.servlet.multipart.max-file-size: 25MB
-spring.servlet.multipart.max-request-size: 25MB
 
 #import
 import.delimiter: ";"
