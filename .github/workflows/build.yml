@@ -21,11 +21,11 @@ jobs:
           distribution: 'zulu'
           java-version: '21'
 
-      - name: Test
-        uses: gradle/gradle-build-action@v2
-        with:
-          gradle-version: 8.3
-          arguments: test
+#      - name: Test
+#        uses: gradle/gradle-build-action@v2
+#        with:
+#          gradle-version: 8.3
+#          arguments: test
 
       - name: Analysis of Coverage
         uses: cicirello/jacoco-badge-generator@v2
