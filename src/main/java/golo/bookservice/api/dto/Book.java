@@ -2,7 +2,6 @@ package golo.bookservice.api.dto;
 
 import lombok.*;
 
-@Setter
 @Getter
 @Builder
 @NoArgsConstructor

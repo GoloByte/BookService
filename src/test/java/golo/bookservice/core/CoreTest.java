@@ -1,5 +1,6 @@
 package golo.bookservice.core;
 
+import feign.FeignException;
 import golo.bookservice.api.dto.Book;
 import golo.bookservice.api.dto.Charge;
 import golo.bookservice.data.BookRepository;
@@ -23,6 +24,7 @@ import java.io.IOException;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 
 @TestPropertySource(properties = {"spring.datasource.url=jdbc:h2:mem:golo-book-service-db"})
@@ -54,6 +56,8 @@ class CoreTest {
         assertThat(books).hasSize(2);
 
         assertThat(core.getAvailableQuantity()).isEqualTo(18);
+
+        assertThatThrownBy(() ->core.lendOut(19)).isInstanceOf(IllegalStateException.class);
 
     }
 
