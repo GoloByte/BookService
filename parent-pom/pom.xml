@@ -42,12 +42,10 @@
 
         <!-- Monitoring -->
         <micrometer.registry.prometheus.version>1.12.0</micrometer.registry.prometheus.version>
-<!--        <spring.doc.openapi.version>1.7.0</spring.doc.openapi.version>-->
 
         <!-- Test -->
         <h2database.version>2.2.220</h2database.version>
-        <openfeign.version>4.0.4</openfeign.version>
-        <spring-boot-starter-webflux.version>3.1.5</spring-boot-starter-webflux.version>
+        <reactive-streams.version>1.0.4</reactive-streams.version>
     </properties>
 
     <dependencyManagement>

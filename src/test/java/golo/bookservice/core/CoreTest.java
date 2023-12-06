@@ -1,17 +1,14 @@
 package golo.bookservice.core;
 
-import feign.FeignException;
 import golo.bookservice.api.dto.Book;
 import golo.bookservice.api.dto.Charge;
 import golo.bookservice.data.BookRepository;
 import golo.bookservice.data.ChargeRepository;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.transaction.annotation.Transactional;
