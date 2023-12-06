@@ -16,7 +16,7 @@ services:
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
     restart: always
     ports:
-      - 40177:40277
+      - 50200:50200
 
   golo-book-service-db:
     image: 'postgres:15'
