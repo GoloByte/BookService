@@ -21,7 +21,8 @@ jobs:
           distribution: 'zulu'
           java-version: '21'
 
-#      - name: Build with Maven
+      - name: Build with Maven
+        run: mvn clean install -f pom.xml
 #        run: mvn -B package -Pcoverage
 
 #      - name: Generate JaCoCo badge
