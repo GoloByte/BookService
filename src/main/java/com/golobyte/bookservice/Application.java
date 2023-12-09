@@ -1,4 +1,4 @@
-package golo.bookservice;
+package com.golobyte.bookservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

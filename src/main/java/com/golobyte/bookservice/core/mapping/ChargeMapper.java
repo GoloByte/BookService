@@ -1,7 +1,7 @@
-package golo.bookservice.core.mapping;
+package com.golobyte.bookservice.core.mapping;
 
-import golo.bookservice.api.dto.Charge;
-import golo.bookservice.data.entity.ChargeEo;
+import com.golobyte.bookservice.api.dto.Charge;
+import com.golobyte.bookservice.data.entity.ChargeEo;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

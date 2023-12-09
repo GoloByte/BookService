@@ -1,6 +1,6 @@
-package golo.bookservice.api;
+package com.golobyte.bookservice.api;
 
-import golo.bookservice.api.dto.Charge;
+import com.golobyte.bookservice.api.dto.Charge;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;

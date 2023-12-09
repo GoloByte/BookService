@@ -1,6 +1,6 @@
-package golo.bookservice.data;
+package com.golobyte.bookservice.data;
 
-import golo.bookservice.data.entity.BookEo;
+import com.golobyte.bookservice.data.entity.BookEo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

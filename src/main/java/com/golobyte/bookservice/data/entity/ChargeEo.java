@@ -1,4 +1,4 @@
-package golo.bookservice.data.entity;
+package com.golobyte.bookservice.data.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

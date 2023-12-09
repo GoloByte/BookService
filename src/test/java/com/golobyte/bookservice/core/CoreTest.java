@@ -1,9 +1,9 @@
-package golo.bookservice.core;
+package com.golobyte.bookservice.core;
 
-import golo.bookservice.api.dto.Book;
-import golo.bookservice.api.dto.Charge;
-import golo.bookservice.data.BookRepository;
-import golo.bookservice.data.ChargeRepository;
+import com.golobyte.bookservice.api.dto.Book;
+import com.golobyte.bookservice.api.dto.Charge;
+import com.golobyte.bookservice.data.BookRepository;
+import com.golobyte.bookservice.data.ChargeRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

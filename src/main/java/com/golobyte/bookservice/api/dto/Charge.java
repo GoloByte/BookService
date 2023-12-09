@@ -1,4 +1,4 @@
-package golo.bookservice.api.dto;
+package com.golobyte.bookservice.api.dto;
 
 import lombok.*;
 

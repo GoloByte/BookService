@@ -1,7 +1,7 @@
-package golo.bookservice.api;
+package com.golobyte.bookservice.api;
 
-import golo.bookservice.api.dto.Charge;
-import golo.bookservice.core.Core;
+import com.golobyte.bookservice.api.dto.Charge;
+import com.golobyte.bookservice.core.Core;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

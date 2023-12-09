@@ -1,8 +1,8 @@
-package golo.bookservice.api;
+package com.golobyte.bookservice.api;
 
-import golo.bookservice.api.dto.Book;
-import golo.bookservice.api.dto.Charge;
-import golo.bookservice.core.Core;
+import com.golobyte.bookservice.api.dto.Book;
+import com.golobyte.bookservice.api.dto.Charge;
+import com.golobyte.bookservice.core.Core;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.constraints.Max;

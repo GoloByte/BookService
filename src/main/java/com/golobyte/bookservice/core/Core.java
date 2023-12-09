@@ -1,10 +1,10 @@
-package golo.bookservice.core;
+package com.golobyte.bookservice.core;
 
-import golo.bookservice.api.dto.Book;
-import golo.bookservice.api.dto.Charge;
-import golo.bookservice.core.mapping.ChargeMapper;
-import golo.bookservice.data.BookRepository;
-import golo.bookservice.data.ChargeRepository;
+import com.golobyte.bookservice.api.dto.Book;
+import com.golobyte.bookservice.api.dto.Charge;
+import com.golobyte.bookservice.core.mapping.ChargeMapper;
+import com.golobyte.bookservice.data.BookRepository;
+import com.golobyte.bookservice.data.ChargeRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
