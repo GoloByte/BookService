@@ -17,6 +17,9 @@ services:
     restart: always
     ports:
       - 50200:50200
+    networks:
+      - golo-network
+
 
   golo-book-service-db:
     image: 'postgres:15'
@@ -28,7 +31,13 @@ services:
     restart: always
     volumes:
       - golo-book-service-db-data:/var/lib/postgresql/data
+    networks:
+      - golo-network
 
 volumes:
   golo-book-service-db-data:
     name: "golo-book-service-db-data"
+
+networks:
+  golo-network:
+    name: golo-network
