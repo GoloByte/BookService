@@ -26,4 +26,9 @@ services:
       - POSTGRES_USER=golo
       - POSTGRES_PASSWORD=qFkJj92N9A4E
     restart: always
+    volumes:
+      - golo-book-service-db-data:/var/lib/postgresql/data
 
+volumes:
+  golo-book-service-db-data:
+    name: "golo-book-service-db-data"
