@@ -17,14 +17,14 @@ public interface BookRepository extends JpaRepository<BookEo, String> {
      * <p>
      * SKIP LOCKED : concurrent transaction will skip locked records
      *
-     * @param quantity of requested books
+     * @param number of requested books
      * @return list of books
      */
-    @Query(value = "SELECT * FROM book WHERE borrowed = false LIMIT :quantity FOR UPDATE SKIP LOCKED", nativeQuery = true)
-    List<BookEo> borrow(@Param("quantity") int quantity);
+    @Query(value = "SELECT * FROM book WHERE borrowed = false LIMIT :number FOR UPDATE SKIP LOCKED", nativeQuery = true)
+    List<BookEo> borrow(@Param("number") int number);
 
     @Query(value = "SELECT count(id) FROM book  WHERE borrowed = false", nativeQuery = true)
-    long getAvailableQuantity();
+    long getNumberOfAvailableBooks();
 
     @Query(value = "SELECT EXISTS(SELECT * FROM book where name = :name)", nativeQuery = true)
     boolean isBookExists(@Param("name") String name);

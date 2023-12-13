@@ -52,20 +52,20 @@ public class Controller {
      *
      * @return numbers of available books
      */
-    @GetMapping("available-numbers")
+    @GetMapping("available-books-number")
     public long getAvailableNumbers() {
-        return core.getAvailableQuantity();
+        return core.getNumberOfAvailableBooks();
     }
 
 
     /**
      * exclusive borrow of books
      *
-     * @param quantity of required books
+     * @param number of required books
      * @return List of books
      */
     @GetMapping("borrow")
-    public List<Book> borrow(@RequestParam("quantity") @Min(1) @Max(5) int quantity) {
-        return core.borrow(quantity);
+    public List<Book> borrow(@RequestParam("number") @Min(1) @Max(5) int number) {
+        return core.borrow(number);
     }
 }

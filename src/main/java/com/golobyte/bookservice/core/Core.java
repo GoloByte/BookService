@@ -41,12 +41,12 @@ public class Core {
     }
 
     @Transactional()
-    public long getAvailableQuantity() {
-        return bookRepository.getAvailableQuantity();
+    public long getNumberOfAvailableBooks() {
+        return bookRepository.getNumberOfAvailableBooks();
     }
 
     @Transactional()
-    public List<Book> borrow(int quantity) {
-        return borrow.borrow(quantity);
+    public List<Book> borrow(int number) {
+        return borrow.borrow(number);
     }
 }

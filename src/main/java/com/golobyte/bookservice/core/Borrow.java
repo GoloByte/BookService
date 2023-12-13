@@ -17,12 +17,12 @@ public class Borrow {
     private final BookRepository bookRepository;
     private final BookMapper bookMapper;
 
-    public List<Book> borrow(int quantity) {
+    public List<Book> borrow(int number) {
 
-        List<BookEo> booksEoFound = bookRepository.borrow(quantity);
+        List<BookEo> booksEoFound = bookRepository.borrow(number);
 
-        if (booksEoFound.size() < quantity) {
-            throw new IllegalStateException("Quantity is not available");
+        if (booksEoFound.size() < number) {
+            throw new IllegalStateException("Number of books is not available");
         }
 
         List<BookEo> booksEoToUpdate = booksEoFound.stream()

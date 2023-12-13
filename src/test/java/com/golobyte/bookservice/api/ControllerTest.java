@@ -38,11 +38,11 @@ class ControllerTest {
         assertThat(Objects.requireNonNull(charge).getImported()).isEqualTo(20);
 
         // GET
-        Integer availableQuantity = RestClient.create()
+        Integer numberOfAvailableBooks = RestClient.create()
                 .get()
-                .uri("http://localhost:" + port + "/books/available-numbers")
+                .uri("http://localhost:" + port + "/books/available-books-number")
                 .retrieve().body(Integer.class);
-        assertThat(availableQuantity).isEqualTo(20);
+        assertThat(numberOfAvailableBooks).isEqualTo(20);
     }
 
     private static MultiValueMap<String, HttpEntity<?>> getResourceFileAsMultiValueMap() throws IOException {
