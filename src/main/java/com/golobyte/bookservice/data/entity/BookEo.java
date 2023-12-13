@@ -19,8 +19,8 @@ public class BookEo {
     @Column(name = "name", unique=true)
     private String name;
 
-    @Column(name = "lend_out")
-    private boolean lendOut;
+    @Column(name = "borrowed")
+    private boolean borrowed;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "charge_id", nullable = false)

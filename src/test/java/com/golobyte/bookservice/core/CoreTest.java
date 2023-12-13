@@ -49,14 +49,14 @@ class CoreTest {
 
         assertThat(core.getAvailableQuantity()).isEqualTo(20);
 
-        List<Book> books = core.lendOut(2);
+        List<Book> books = core.borrow(2);
         assertThat(books).hasSize(2);
         assertThat(books.getFirst().getName()).isNotEmpty();
-        assertThat(books.getFirst().isLendOut()).isTrue();
+        assertThat(books.getFirst().isBorrowed()).isTrue();
 
         assertThat(core.getAvailableQuantity()).isEqualTo(18);
 
-        assertThatThrownBy(() ->core.lendOut(19)).isInstanceOf(IllegalStateException.class);
+        assertThatThrownBy(() -> core.borrow(19)).isInstanceOf(IllegalStateException.class);
 
     }
 

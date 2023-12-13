@@ -48,24 +48,24 @@ public class Controller {
     }
 
     /**
-     * getAmount returns amount of available books
+     * getAvailableNumbers returns numbers of available books
      *
-     * @return amount of available books
+     * @return numbers of available books
      */
-    @GetMapping("available-quantity")
-    public long getAvailableQuantity() {
+    @GetMapping("available-numbers")
+    public long getAvailableNumbers() {
         return core.getAvailableQuantity();
     }
 
 
     /**
-     * exclusive lend out of books
+     * exclusive borrow of books
      *
      * @param quantity of required books
      * @return List of books
      */
-    @GetMapping("lend-out")
-    public List<Book> lendOut(@RequestParam("quantity") @Min(1) @Max(5) int quantity) {
-        return core.lendOut(quantity);
+    @GetMapping("borrow")
+    public List<Book> borrow(@RequestParam("quantity") @Min(1) @Max(5) int quantity) {
+        return core.borrow(quantity);
     }
 }

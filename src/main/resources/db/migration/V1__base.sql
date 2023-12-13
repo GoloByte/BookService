@@ -15,7 +15,7 @@ CREATE TABLE book
             primary key,
     name      varchar(255) unique,
 --     author_id varchar(255),
-    lend_out  BOOLEAN,
+    borrowed BOOLEAN,
     charge_id varchar(36),
     CONSTRAINT fk_charge
         FOREIGN KEY (charge_id)

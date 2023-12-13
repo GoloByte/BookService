@@ -8,20 +8,18 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
-import java.time.Instant;
 import java.util.List;
 
 @Slf4j
 @Component
 @AllArgsConstructor
-public class Lend {
+public class Borrow {
     private final BookRepository bookRepository;
     private final BookMapper bookMapper;
 
-    public List<Book> lendOut(int quantity) {
-        Instant lendOn = Instant.now();
+    public List<Book> borrow(int quantity) {
 
-        List<BookEo> booksEoFound = bookRepository.lendOut(quantity);
+        List<BookEo> booksEoFound = bookRepository.borrow(quantity);
 
         if (booksEoFound.size() < quantity) {
             throw new IllegalStateException("Quantity is not available");
@@ -29,7 +27,7 @@ public class Lend {
 
         List<BookEo> booksEoToUpdate = booksEoFound.stream()
                 .peek(booksEo -> {
-                    booksEo.setLendOut(true);
+                    booksEo.setBorrowed(true);
                 }).toList();
 
         List<BookEo> booksUpdated = bookRepository.saveAll(booksEoToUpdate);

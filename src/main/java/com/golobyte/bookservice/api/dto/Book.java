@@ -12,6 +12,6 @@ import lombok.NoArgsConstructor;
 public class Book {
     private String name;
 
-    private boolean lendOut;
+    private boolean borrowed;
 
 }

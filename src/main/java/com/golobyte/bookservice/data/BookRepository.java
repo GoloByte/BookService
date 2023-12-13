@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface BookRepository extends JpaRepository<BookEo, String> {
     /**
-     * lend out amount of books
+     * borrow number of books
      * <p>
      * additional statements to ensure that in concurrency calls one book can be lent for exactly one caller
      * <p>
@@ -20,10 +20,10 @@ public interface BookRepository extends JpaRepository<BookEo, String> {
      * @param quantity of requested books
      * @return list of books
      */
-    @Query(value = "SELECT * FROM book WHERE lend_out = false LIMIT :quantity FOR UPDATE SKIP LOCKED", nativeQuery = true)
-    List<BookEo> lendOut(@Param("quantity") int quantity);
+    @Query(value = "SELECT * FROM book WHERE borrowed = false LIMIT :quantity FOR UPDATE SKIP LOCKED", nativeQuery = true)
+    List<BookEo> borrow(@Param("quantity") int quantity);
 
-    @Query(value = "SELECT count(id) FROM book  WHERE lend_out = false", nativeQuery = true)
+    @Query(value = "SELECT count(id) FROM book  WHERE borrowed = false", nativeQuery = true)
     long getAvailableQuantity();
 
     @Query(value = "SELECT EXISTS(SELECT * FROM book where name = :name)", nativeQuery = true)

@@ -1,5 +1,6 @@
 # BookService
-Import and lend books. Concurrency pattern db, rest controller test with spring restclient and also mockmvc
+
+Import and borrow books. Concurrency pattern db, rest controller test with spring restclient and also mockmvc
 
 ## 1. Setup local dev
 

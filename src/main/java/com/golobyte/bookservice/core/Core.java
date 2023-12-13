@@ -18,7 +18,7 @@ import java.util.List;
 @Component
 @AllArgsConstructor
 public class Core {
-    private final Lend lend;
+    private final Borrow borrow;
     private final Importer importer;
     private final ChargeRepository chargeRepository;
     private final BookRepository bookRepository;
@@ -46,7 +46,7 @@ public class Core {
     }
 
     @Transactional()
-    public List<Book> lendOut(int quantity) {
-        return lend.lendOut(quantity);
+    public List<Book> borrow(int quantity) {
+        return borrow.borrow(quantity);
     }
 }

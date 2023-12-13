@@ -40,7 +40,7 @@ class ControllerTest {
         // GET
         Integer availableQuantity = RestClient.create()
                 .get()
-                .uri("http://localhost:" + port + "/books/available-quantity")
+                .uri("http://localhost:" + port + "/books/available-numbers")
                 .retrieve().body(Integer.class);
         assertThat(availableQuantity).isEqualTo(20);
     }
