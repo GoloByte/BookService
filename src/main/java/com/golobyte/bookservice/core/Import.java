@@ -77,7 +77,7 @@ public class Import {
     private ChargeEo createChargeWithBooks(Instant importedOn, Set<String> bookNamesSet) {
         ChargeEo chargeEo = new ChargeEo();
         chargeEo.setImportedOn(importedOn);
-        chargeEo.setBooks(new ArrayList<>());
+        chargeEo.setBooks(List.of());
 
         List<String> bookNames = new ArrayList<>(bookNamesSet);
         // iterate the book list, create EO for each and add it to charge
