@@ -19,7 +19,7 @@ import java.util.List;
 @AllArgsConstructor
 public class Core {
     private final Borrow borrow;
-    private final Importer importer;
+    private final Import anImport;
     private final ChargeRepository chargeRepository;
     private final BookRepository bookRepository;
     private final ChargeMapper chargeMapper;
@@ -27,7 +27,7 @@ public class Core {
     @Transactional()
     public Charge importBooks(MultipartFile file) {
         try {
-            return importer.importBooks(file.getInputStream());
+            return anImport.importBooks(file.getInputStream());
         } catch (IOException e) {
             throw new IllegalStateException(e);
         }

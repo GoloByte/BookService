@@ -22,7 +22,7 @@ import java.util.*;
 @Component
 @AllArgsConstructor
 @Transactional
-public class Importer {
+public class Import {
 
     private final BookRepository bookRepository;
     private final ChargeRepository chargeRepository;
