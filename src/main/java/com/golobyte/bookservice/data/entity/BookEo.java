@@ -22,6 +22,9 @@ public class BookEo {
     @Column(name = "borrowed")
     private boolean borrowed;
 
+    /*
+        Many-To-One relation of the books to a charge
+    */
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "charge_id", nullable = false)
     private ChargeEo chargeEo;

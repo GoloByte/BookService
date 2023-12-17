@@ -35,19 +35,19 @@ class ControllerTest {
                 .body(file)
                 .retrieve()
                 .body(Charge.class);
-        assertThat(Objects.requireNonNull(charge).getImported()).isEqualTo(20);
+        assertThat(Objects.requireNonNull(charge).getImportedCount()).isEqualTo(5);
 
         // GET
         Integer numberOfAvailableBooks = RestClient.create()
                 .get()
                 .uri("http://localhost:" + port + "/books/available-books-number")
                 .retrieve().body(Integer.class);
-        assertThat(numberOfAvailableBooks).isEqualTo(20);
+        assertThat(numberOfAvailableBooks).isEqualTo(5);
     }
 
     private static MultiValueMap<String, HttpEntity<?>> getResourceFileAsMultiValueMap() throws IOException {
         MultipartBodyBuilder multipartBodyBuilder = new MultipartBodyBuilder();
-        multipartBodyBuilder.part("file", new FileSystemResource(ResourceUtils.getFile(new ClassPathResource("books/books.csv").getURL())));
+        multipartBodyBuilder.part("file", new FileSystemResource(ResourceUtils.getFile(new ClassPathResource("books/5books.csv").getURL())));
         return multipartBodyBuilder.build();
     }
 }

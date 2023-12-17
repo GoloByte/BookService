@@ -7,7 +7,7 @@ import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring")
 public interface ChargeMapper {
-    @Mapping(target = "timestamp",
-            expression = "java(java.time.LocalDateTime.ofInstant(chargeEo.getTimestamp(),java.time.ZoneId.systemDefault()))")
+    @Mapping(target = "importedOn",
+            expression = "java(java.time.LocalDateTime.ofInstant(chargeEo.getImportedOn(),java.time.ZoneId.systemDefault()))")
     Charge map(ChargeEo chargeEo);
 }

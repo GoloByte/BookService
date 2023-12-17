@@ -32,7 +32,6 @@ public class Importer {
         log.info("import started ...");
         Instant importTimeStamp = Instant.now();
         Set<String> bookNames = new HashSet<>();
-        long total = 0;
 
         try (BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))) {
             String line;
@@ -49,7 +48,6 @@ public class Importer {
                         column++;
                         if (column == 1) {
                             String bookName = rowScanner.next();
-                            total++;
 
                             boolean contains = bookNames.contains(bookName);
                             if (!contains) {
@@ -66,22 +64,34 @@ public class Importer {
         } catch (IOException e) {
             throw new IllegalStateException(e);
         }
-        ChargeEo chargeEo = new ChargeEo();
-        chargeEo.setTimestamp(importTimeStamp);
-        final ChargeEo chargeEoSaved = chargeRepository.save(chargeEo);
 
-        List<String> strings = new ArrayList<>(bookNames);
-        List<BookEo> bookEoList = strings.stream().map(s -> BookEo.builder()
-                        .name(s)
-                        .chargeEo(chargeEoSaved)
-                        .build())
-                .toList();
-        List<BookEo> bookEoListSaved = bookRepository.saveAll(bookEoList);
+        ChargeEo chargeEo = createTheChargeWithBooks(importTimeStamp, bookNames);
+        // when  save the ChargeEo entity,
+        // the BookEo entities within it will be saved automatically due to the cascading configuration in ChargeEo
+        ChargeEo chargeEoSaved = chargeRepository.save(chargeEo);
 
-        chargeEoSaved.setTotal(total);
-        chargeEoSaved.setImported(bookEoListSaved.size());
-        chargeRepository.save(chargeEoSaved);
-
+        // return the charge mapped to the dto
         return chargeMapper.map(chargeEoSaved);
+    }
+
+    private ChargeEo createTheChargeWithBooks(Instant importTimeStamp, Set<String> bookNamesSet) {
+        ChargeEo chargeEo = new ChargeEo();
+        chargeEo.setImportedOn(importTimeStamp);
+        chargeEo.setBooks(new ArrayList<>());
+
+        List<String> bookNames = new ArrayList<>(bookNamesSet);
+        // iterate the book list, create EO for each and add it to charge
+        bookNames.forEach(bookName -> {
+            BookEo bookEo = BookEo.builder()
+                    .name(bookName)
+                    .chargeEo(chargeEo)
+                    .build();
+            // add BookEo instances to the List<BookEo> in ChargeEo.
+            // This ensures the relationship is set up correctly on both sides.
+            chargeEo.getBooks().add(bookEo);
+        });
+
+        chargeEo.setImportedCount(bookNames.size());
+        return chargeEo;
     }
 }

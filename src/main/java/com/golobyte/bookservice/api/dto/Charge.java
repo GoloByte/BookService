@@ -10,9 +10,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Charge {
-    private LocalDateTime timestamp;
+    private LocalDateTime importedOn;
 
-    private long total;
-
-    private long imported;
+    private long importedCount;
 }

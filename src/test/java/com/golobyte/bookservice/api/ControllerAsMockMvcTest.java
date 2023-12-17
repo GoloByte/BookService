@@ -38,8 +38,8 @@ class ControllerAsMockMvcTest {
 
     @Test
     void testImportBooks() throws Exception {
-        InputStream inputStream = getClass().getResourceAsStream("/books.csv");
-        MockMultipartFile file = new MockMultipartFile("file", "books.csv",
+        InputStream inputStream = getClass().getResourceAsStream("/5books.csv");
+        MockMultipartFile file = new MockMultipartFile("file", "5books.csv",
                 MediaType.MULTIPART_FORM_DATA_VALUE, inputStream);
 
 

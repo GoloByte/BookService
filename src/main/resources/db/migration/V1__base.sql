@@ -3,9 +3,8 @@ CREATE TABLE charge
     id        varchar(36) not null
         constraint pk_batch_result
             primary key,
-    timestamp TIMESTAMP,
-    total     integer,
-    imported  integer
+    imported_on    TIMESTAMP,
+    imported_count integer
 );
 
 CREATE TABLE book

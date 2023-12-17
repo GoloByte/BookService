@@ -40,24 +40,28 @@ class CoreTest {
     @Test
     @Transactional
     void importBooks() throws Exception {
-        MultipartFile file =  getFileFromResource("/books/books.csv");
+        // GIVEN: source of 5 books
+        String booksSource = "/books/5books.csv";
+        MultipartFile file = getFileFromResource(booksSource);
+        // WHEN: import of the book source
         Charge charge = core.importBooks(file);
 
-        assertThat(charge.getImported()).isEqualTo(20);
-        assertThat(charge.getTotal()).isEqualTo(20);
-        assertThat(charge.getTimestamp()).isNotNull();
+        // THEN: number of imported books should be 5
+        assertThat(charge.getImportedCount()).isEqualTo(5);
+        assertThat(charge.getImportedOn()).isNotNull();
+        assertThat(core.getNumberOfAvailableBooks()).isEqualTo(5);
 
-        assertThat(core.getNumberOfAvailableBooks()).isEqualTo(20);
-
+        // WHEN: borrow 2 books
         List<Book> books = core.borrow(2);
+        // THEN: number of borrowed books should be 2, books are marked as borrowed
         assertThat(books).hasSize(2);
         assertThat(books.getFirst().getName()).isNotEmpty();
         assertThat(books.getFirst().isBorrowed()).isTrue();
+        // THEN: number of available books should be 3
+        assertThat(core.getNumberOfAvailableBooks()).isEqualTo(3);
 
-        assertThat(core.getNumberOfAvailableBooks()).isEqualTo(18);
-
-        assertThatThrownBy(() -> core.borrow(19)).isInstanceOf(IllegalStateException.class);
-
+        // WHEN: borrow 4 books, exception should be thrown
+        assertThatThrownBy(() -> core.borrow(4)).isInstanceOf(IllegalStateException.class);
     }
 
     private static MultipartFile getFileFromResource(String path) throws IOException {
