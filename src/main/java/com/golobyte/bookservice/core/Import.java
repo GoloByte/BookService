@@ -30,7 +30,7 @@ public class Import {
 
     public Charge importBooks(InputStream inputStream) {
         log.info("import started ...");
-        Instant importTimeStamp = Instant.now();
+        Instant importedOn = Instant.now();
         Set<String> bookNames = new HashSet<>();
 
         try (BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))) {
@@ -65,7 +65,7 @@ public class Import {
             throw new IllegalStateException(e);
         }
 
-        ChargeEo chargeEo = createTheChargeWithBooks(importTimeStamp, bookNames);
+        ChargeEo chargeEo = createTheChargeWithBooks(importedOn, bookNames);
         // when  save the ChargeEo entity,
         // the BookEo entities within it will be saved automatically due to the cascading configuration in ChargeEo
         ChargeEo chargeEoSaved = chargeRepository.save(chargeEo);
@@ -74,9 +74,9 @@ public class Import {
         return chargeMapper.map(chargeEoSaved);
     }
 
-    private ChargeEo createTheChargeWithBooks(Instant importTimeStamp, Set<String> bookNamesSet) {
+    private ChargeEo createTheChargeWithBooks(Instant importedOn, Set<String> bookNamesSet) {
         ChargeEo chargeEo = new ChargeEo();
-        chargeEo.setImportedOn(importTimeStamp);
+        chargeEo.setImportedOn(importedOn);
         chargeEo.setBooks(new ArrayList<>());
 
         List<String> bookNames = new ArrayList<>(bookNamesSet);
