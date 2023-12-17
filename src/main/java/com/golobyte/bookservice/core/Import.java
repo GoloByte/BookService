@@ -65,7 +65,7 @@ public class Import {
             throw new IllegalStateException(e);
         }
 
-        ChargeEo chargeEo = createTheChargeWithBooks(importedOn, bookNames);
+        ChargeEo chargeEo = createChargeWithBooks(importedOn, bookNames);
         // when  save the ChargeEo entity,
         // the BookEo entities within it will be saved automatically due to the cascading configuration in ChargeEo
         ChargeEo chargeEoSaved = chargeRepository.save(chargeEo);
@@ -74,7 +74,7 @@ public class Import {
         return chargeMapper.map(chargeEoSaved);
     }
 
-    private ChargeEo createTheChargeWithBooks(Instant importedOn, Set<String> bookNamesSet) {
+    private ChargeEo createChargeWithBooks(Instant importedOn, Set<String> bookNamesSet) {
         ChargeEo chargeEo = new ChargeEo();
         chargeEo.setImportedOn(importedOn);
         chargeEo.setBooks(new ArrayList<>());
