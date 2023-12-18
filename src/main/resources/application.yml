@@ -27,6 +27,15 @@ spring:
       hibernate:
         format_sql: true
 
+#logging:
+#  level:
+#    org:
+#      hibernate:
+#        SQL: DEBUG
+#        type:
+#          descriptor:
+#            sql: TRACE
+
 springdoc:
   show-actuator: true
   api-docs:

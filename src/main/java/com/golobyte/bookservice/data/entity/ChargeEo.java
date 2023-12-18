@@ -35,6 +35,11 @@ public class ChargeEo {
         Use Lazy loading: With FetchType.LAZY, the related entities ( BookEo entities associated with a ChargeEo)
         are not loaded immediately when the parent entity (ChargeEo) is retrieved from the database.
         Instead, they are loaded on-demand, i.e., only when you actually access the collection of related entities in code.
+
+        Btw. fetch type for
+        @OneToMany and @ManyToMany associations in JPA is already
+        LAZY as default,
+        I do set it here explicitly only for information purpose
      */
     @OneToMany(mappedBy = "chargeEo", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     private List<BookEo> books;
