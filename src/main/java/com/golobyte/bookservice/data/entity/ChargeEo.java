@@ -36,6 +36,6 @@ public class ChargeEo {
         are not loaded immediately when the parent entity (ChargeEo) is retrieved from the database.
         Instead, they are loaded on-demand, i.e., only when you actually access the collection of related entities in code.
      */
-    @OneToMany(mappedBy = "chargeEo", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "chargeEo", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     private List<BookEo> books;
 }
