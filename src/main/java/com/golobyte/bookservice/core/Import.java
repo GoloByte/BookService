@@ -63,6 +63,7 @@ public class Import {
                             String finalBookName = bookName;
                             Arrays.stream(authors.split(",")).toList().forEach(authorName -> {
                                 books.get(finalBookName).add(authorName);
+                                log.info("added authorName " + authorName + " to book " + finalBookName);
                             });
                         } else {
                             rowScanner.next();
@@ -83,18 +84,18 @@ public class Import {
         return chargeMapper.map(chargeEoSaved);
     }
 
-    private ChargeEo createChargeWithBooks(Instant importedOn, Map<String, List<String>> books) {
+    private ChargeEo createChargeWithBooks(Instant importedOn, Map<String, List<String>> mapOfBooks) {
         ChargeEo chargeEo = new ChargeEo();
         chargeEo.setImportedOn(importedOn);
         chargeEo.setBooks(new ArrayList<>());
 
-        List<String> bookNames = new ArrayList<>(books.keySet());
+        List<String> bookNames = new ArrayList<>(mapOfBooks.keySet());
         Map<String, AuthorEo> createdAuthors = new HashMap<>();
 
         // iterate the book list, create EO for each and add it to charge
         bookNames.forEach(bookName -> {
             ArrayList<AuthorEo> authors = new ArrayList<>();
-            books.get(bookName).forEach(authorName -> {
+            mapOfBooks.get(bookName).forEach(authorName -> {
                 // retrieve from database
                 AuthorEo authorEo = authorRepository.findByName(authorName);
                 if (authorEo == null) {
@@ -102,9 +103,10 @@ public class Import {
                     authorEo = createdAuthors.get(authorName);
                     if (authorEo == null) {
                         // create new one and put in map of created
-                        createdAuthors.put(authorName, AuthorEo.builder()
+                        authorEo = AuthorEo.builder()
                                 .name(authorName)
-                                .build());
+                                .build();
+                        createdAuthors.put(authorName, authorEo);
                     }
                 }
                 authors.add(authorEo);
@@ -115,6 +117,8 @@ public class Import {
                     .chargeEo(chargeEo)
                     .authors(authors)
                     .build();
+
+
             // add BookEo instances to the List<BookEo> in ChargeEo.
             // This ensures the relationship is set up correctly on both sides.
             chargeEo.getBooks().add(bookEo);
