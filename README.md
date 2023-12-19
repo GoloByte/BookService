@@ -16,3 +16,20 @@ copy target/application.jar to src/main/docker
 - in terminal goto /src/main/docker
     - run docker-compose build
     - run docker-compose up
+
+## 3. Table join
+
+SELECT
+b.id AS book_id,
+b.name AS book_name,
+b.borrowed AS book_borrowed,
+b.charge_id AS book_charge_id,
+a.id AS author_id,
+a.name AS author_name
+
+FROM
+book b
+
+JOIN book_author ba ON b.id = ba.book_id
+
+JOIN author a ON a.id = ba.author_id;
