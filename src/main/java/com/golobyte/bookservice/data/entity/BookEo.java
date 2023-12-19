@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.UuidGenerator;
 
+import java.util.List;
+
 @Setter
 @Getter
 @Builder
@@ -43,4 +45,13 @@ public class BookEo {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "charge_id", nullable = false)
     private ChargeEo chargeEo;
+
+
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "book_author",
+            joinColumns = @JoinColumn(name = "book_id"),
+            inverseJoinColumns = @JoinColumn(name = "author_id")
+    )
+    private List<AuthorEo> authors;
 }
