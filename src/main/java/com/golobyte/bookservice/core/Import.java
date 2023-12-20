@@ -34,7 +34,6 @@ public class Import {
     public Charge importBooks(InputStream inputStream) {
         log.info("import started ...");
         Instant importedOn = Instant.now();
-//        Set<String> bookNames = new HashSet<>();
         Map<String, List<String>> books = new HashMap<>();
 
         try (BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))) {
