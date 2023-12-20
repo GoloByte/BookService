@@ -1,6 +1,37 @@
 # BookService
 
-Import and borrow books. Concurrency pattern db, rest controller test with spring restclient and also mockmvc
+Feature Prototyping of Java Spring and related frameworks
+
+- rest controller : class Controller
+  - validation of dto
+  - file upload
+  - swagger api
+
+- domain logic : class Core
+  - @Transactional
+  - use mapstruct to map EO to DTO
+  - csv file processing : class Importer
+  - concurrency pattern : class Borrow
+  - mapstruct use for cascade mapping of objects having OneToMany, ManyToMany relations
+    - explicit configuration for ignore deep mapping to avoid circular mapping calls
+
+- data persistence
+  - relations
+    - @OneToMany
+    - @ManyToOne
+    - @ManyToMany
+  - @Query using row lock and skip locked for concurrency pattern implementation
+
+- integration test
+  - controller test using spring rest client
+  - controller test using MockMvc
+  - use H2 in-memory database
+  - use @Transactional in H2 Database tests to rollback database after test execution
+
+- sonarQube
+  - use local sonarQube https://www.baeldung.com/sonar-qube
+  - clean verify sonar:sonar -Dsonar.projectKey=BookService -Dsonar.projectName='BookService'
+    -Dsonar.host.url=http://localhost:9001 -Dsonar.token=sonar_token -f pom.xml
 
 ## 1. Setup local dev
 

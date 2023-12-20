@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.mock.web.MockMultipartFile;
+import org.springframework.test.context.TestPropertySource;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -24,7 +26,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 
-//@TestPropertySource(properties = {"spring.datasource.url=jdbc:h2:mem:golo-book-service-db"})
+@TestPropertySource(properties = {"spring.datasource.url=jdbc:h2:mem:golo-book-service-db"})
 @SpringBootTest
 class CoreTest {
     @Autowired private Core core;
@@ -39,9 +41,18 @@ class CoreTest {
         bookRepository.deleteAll();
         chargeRepository.deleteAll();
     }
+
     @Test
-//    @Transactional
+    @Transactional
+    void getCharges() {
+        assertThat(core.getCharges()).hasSize(0);
+    }
+
+    @Test
+    @Transactional
     void importBooks() throws Exception {
+        assertThat(core.getCharges()).hasSize(0);
+
         // GIVEN: source of 5 books
         String booksSource = "/books/5books.csv";
         MultipartFile file = getFileFromResource(booksSource);
@@ -66,12 +77,11 @@ class CoreTest {
         assertThatThrownBy(() -> core.borrow(4)).isInstanceOf(IllegalStateException.class);
 
         Charge chargeLoaded = core.getCharges().getFirst();
+        assertThat(chargeLoaded.getBooks()).hasSize(5);
 
         List<Author> authors = core.getAuthors();
+        assertThat(authors).hasSize(3);
 
-        Book first = core.getCharges().getFirst().getBooks().getFirst();
-
-        return;
     }
 
     private static MultipartFile getFileFromResource(String path) throws IOException {

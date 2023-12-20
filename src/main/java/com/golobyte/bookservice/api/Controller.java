@@ -48,6 +48,11 @@ public class Controller {
         return core.getCharges();
     }
 
+    /**
+     * getAuthors provides a list of authors
+     *
+     * @return list of Author
+     */
     @GetMapping("authors")
     public List<Author> getAuthors() {
         return core.getAuthors();
