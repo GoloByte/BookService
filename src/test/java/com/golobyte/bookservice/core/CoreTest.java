@@ -2,6 +2,7 @@ package com.golobyte.bookservice.core;
 
 import com.golobyte.bookservice.api.dto.Book;
 import com.golobyte.bookservice.api.dto.Charge;
+import com.golobyte.bookservice.core.mapping.ChargeMapper;
 import com.golobyte.bookservice.data.BookRepository;
 import com.golobyte.bookservice.data.ChargeRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -10,8 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.mock.web.MockMultipartFile;
-import org.springframework.test.context.TestPropertySource;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -24,10 +23,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 
-@TestPropertySource(properties = {"spring.datasource.url=jdbc:h2:mem:golo-book-service-db"})
+//@TestPropertySource(properties = {"spring.datasource.url=jdbc:h2:mem:golo-book-service-db"})
 @SpringBootTest
 class CoreTest {
     @Autowired private Core core;
+    @Autowired
+    private ChargeMapper chargeMapper;
     @Autowired private BookRepository bookRepository;
     @Autowired private ChargeRepository chargeRepository;
 
@@ -38,7 +39,7 @@ class CoreTest {
         chargeRepository.deleteAll();
     }
     @Test
-    @Transactional
+//    @Transactional
     void importBooks() throws Exception {
         // GIVEN: source of 5 books
         String booksSource = "/books/5books.csv";
@@ -62,6 +63,12 @@ class CoreTest {
 
         // WHEN: borrow 4 books, exception should be thrown
         assertThatThrownBy(() -> core.borrow(4)).isInstanceOf(IllegalStateException.class);
+
+        Charge chargeLoaded = core.getCharges().getFirst();
+
+        Book first = core.getCharges().getFirst().getBooks().getFirst();
+
+        return;
     }
 
     private static MultipartFile getFileFromResource(String path) throws IOException {

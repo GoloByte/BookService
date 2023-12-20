@@ -11,10 +11,9 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Book {
+public class Author {
+
     private String name;
 
-    private boolean borrowed;
-
-    private List<Author> authors;
+    private List<Book> books;
 }
