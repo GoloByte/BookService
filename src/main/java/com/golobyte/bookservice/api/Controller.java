@@ -1,5 +1,6 @@
 package com.golobyte.bookservice.api;
 
+import com.golobyte.bookservice.api.dto.Author;
 import com.golobyte.bookservice.api.dto.Book;
 import com.golobyte.bookservice.api.dto.Charge;
 import com.golobyte.bookservice.core.Core;
@@ -45,6 +46,11 @@ public class Controller {
     @GetMapping("charges")
     public List<Charge> getCharges() {
         return core.getCharges();
+    }
+
+    @GetMapping("authors")
+    public List<Author> getAuthors() {
+        return core.getAuthors();
     }
 
     /**

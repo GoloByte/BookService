@@ -1,5 +1,6 @@
 package com.golobyte.bookservice.core;
 
+import com.golobyte.bookservice.api.dto.Author;
 import com.golobyte.bookservice.api.dto.Book;
 import com.golobyte.bookservice.api.dto.Charge;
 import com.golobyte.bookservice.core.mapping.ChargeMapper;
@@ -65,6 +66,8 @@ class CoreTest {
         assertThatThrownBy(() -> core.borrow(4)).isInstanceOf(IllegalStateException.class);
 
         Charge chargeLoaded = core.getCharges().getFirst();
+
+        List<Author> authors = core.getAuthors();
 
         Book first = core.getCharges().getFirst().getBooks().getFirst();
 

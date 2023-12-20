@@ -1,8 +1,11 @@
 package com.golobyte.bookservice.core;
 
+import com.golobyte.bookservice.api.dto.Author;
 import com.golobyte.bookservice.api.dto.Book;
 import com.golobyte.bookservice.api.dto.Charge;
+import com.golobyte.bookservice.core.mapping.AuthorMapper;
 import com.golobyte.bookservice.core.mapping.ChargeMapper;
+import com.golobyte.bookservice.data.AuthorRepository;
 import com.golobyte.bookservice.data.BookRepository;
 import com.golobyte.bookservice.data.ChargeRepository;
 import lombok.AllArgsConstructor;
@@ -20,9 +23,13 @@ import java.util.List;
 public class Core {
     private final Borrow borrow;
     private final Import anImport;
+
     private final ChargeRepository chargeRepository;
     private final BookRepository bookRepository;
+    private final AuthorRepository authorRepository;
+
     private final ChargeMapper chargeMapper;
+    private final AuthorMapper authorMapper;
 
     @Transactional()
     public Charge importBooks(MultipartFile file) {
@@ -39,6 +46,16 @@ public class Core {
                 .map(chargeMapper::map)
                 .toList();
     }
+
+    @Transactional()
+    public List<Author> getAuthors() {
+        return authorRepository.findAll()
+                .stream()
+                .map(authorMapper::map)
+                .toList();
+    }
+
+
 
     @Transactional()
     public long getNumberOfAvailableBooks() {
