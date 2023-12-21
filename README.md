@@ -29,9 +29,11 @@ Prototyping and use Features of Java Spring and related frameworks
   - controller test using MockMvc
   - use H2 in-memory database
   - use @Transactional in H2 Database tests to rollback database after test execution
+  - use test file resource
 
 - docker deployment
   - compose file for application and database
+  - docker file
 
 - sonarQube
   - use local sonarQube configured according https://www.baeldung.com/sonar-qube
