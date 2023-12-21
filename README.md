@@ -26,7 +26,7 @@ Developing Prototypes and Demonstrating Usage of Features in Java Spring, Associ
   - database setup using flyway
   - @Query using row lock and skip locked for concurrency pattern implementation
 
-- Initial Data Setup
+- initial data setup
   - class InitialDataSetup triggers the data import on application startup
   - using profile "import" ( --spring.profiles.active=import ) which ist set in application.yml
   - call the data import in asynchronous way calling importBooksAsync
