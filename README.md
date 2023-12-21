@@ -21,7 +21,8 @@ Prototyping and use Features of Java Spring and related frameworks
     - @ManyToOne
     - @ManyToMany
     - cascade saving of structure with child and relation within objects
-    - LAZY loading fetch strategy
+  - LAZY loading fetch strategy
+  - database setup using flyway
   - @Query using row lock and skip locked for concurrency pattern implementation
 
 - integration test
