@@ -43,7 +43,7 @@ Prototyping and example use Features of Java Spring, related frameworks and dock
 
 ## 1. Database diagram
 
-![img.png](img.png)
+![img_1.png](img_1.png)
 
 ## 2. Setup local development environment
 
