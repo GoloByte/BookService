@@ -3,7 +3,6 @@ package com.golobyte.bookservice.core;
 import com.golobyte.bookservice.api.dto.Author;
 import com.golobyte.bookservice.api.dto.Book;
 import com.golobyte.bookservice.api.dto.Charge;
-import com.golobyte.bookservice.core.mapping.ChargeMapper;
 import com.golobyte.bookservice.data.BookRepository;
 import com.golobyte.bookservice.data.ChargeRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -30,8 +29,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 @SpringBootTest
 class CoreTest {
     @Autowired private Core core;
-    @Autowired
-    private ChargeMapper chargeMapper;
     @Autowired private BookRepository bookRepository;
     @Autowired private ChargeRepository chargeRepository;
 

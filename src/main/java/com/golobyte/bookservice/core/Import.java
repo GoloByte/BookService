@@ -58,10 +58,14 @@ public class Import {
                                 books.put(bookName, new ArrayList<>());
                             }
                         } else if (column == 2) {
-                            String authors = rowScanner.next();
+                            String authorsLine = rowScanner.next();
+
                             String finalBookName = bookName;
-                            Arrays.stream(authors.split(",")).toList().forEach(authorName -> {
-                                books.get(finalBookName).add(authorName);
+                            Arrays.stream(authorsLine.split(",")).toList().forEach(authorName -> {
+                                List<String> authors = books.get(finalBookName);
+                                if (authors != null) {
+                                    authors.add(authorName);
+                                }
                                 log.info("added authorName " + authorName + " to book " + finalBookName);
                             });
                         } else {
@@ -77,10 +81,11 @@ public class Import {
         ChargeEo chargeEo = createChargeWithBooks(importedOn, books);
         // when  save the ChargeEo entity,
         // the BookEo entities within it will be saved automatically due to the cascading configuration in ChargeEo
-        ChargeEo chargeEoSaved = chargeRepository.save(chargeEo);
-
+        if (chargeEo.getImportedCount() > 0) {
+            chargeEo = chargeRepository.save(chargeEo);
+        }
         // return the charge mapped to the dto
-        return chargeMapper.map(chargeEoSaved);
+        return chargeMapper.map(chargeEo);
     }
 
     private ChargeEo createChargeWithBooks(Instant importedOn, Map<String, List<String>> mapOfBooks) {
