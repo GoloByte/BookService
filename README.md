@@ -1,6 +1,6 @@
 # BookService
 
-Feature Prototyping of Java Spring and related frameworks
+Prototyping and use Features of Java Spring and related frameworks
 
 - rest controller : class Controller
   - validation of dto
