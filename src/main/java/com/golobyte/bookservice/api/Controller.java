@@ -49,6 +49,16 @@ public class Controller {
     }
 
     /**
+     * getCharges provides a list of books
+     *
+     * @return list of Charge
+     */
+    @GetMapping("charges")
+    public List<Book> getBooks() {
+        return core.getBooks();
+    }
+
+    /**
      * getAuthors provides a list of authors
      *
      * @return list of Author

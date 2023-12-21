@@ -4,6 +4,7 @@ import com.golobyte.bookservice.api.dto.Author;
 import com.golobyte.bookservice.api.dto.Book;
 import com.golobyte.bookservice.api.dto.Charge;
 import com.golobyte.bookservice.core.mapping.AuthorMapper;
+import com.golobyte.bookservice.core.mapping.BookMapper;
 import com.golobyte.bookservice.core.mapping.ChargeMapper;
 import com.golobyte.bookservice.data.AuthorRepository;
 import com.golobyte.bookservice.data.BookRepository;
@@ -30,6 +31,7 @@ public class Core {
 
     private final ChargeMapper chargeMapper;
     private final AuthorMapper authorMapper;
+    private final BookMapper bookMapper;
 
     @Transactional()
     public Charge importBooks(MultipartFile file) {
@@ -65,5 +67,12 @@ public class Core {
     @Transactional()
     public List<Book> borrow(int number) {
         return borrow.borrow(number);
+    }
+
+    public List<Book> getBooks() {
+        return bookRepository.findAll()
+                .stream()
+                .map(bookMapper::map)
+                .toList();
     }
 }
