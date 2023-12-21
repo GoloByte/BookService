@@ -1,6 +1,6 @@
 # BookService
 
-Prototyping and example use Features of Java Spring, related frameworks and docker deployment
+Developing Prototypes and Demonstrating Usage of Features in Java Spring, Associated Frameworks, and Docker Deployment
 
 - rest controller : class Controller
   - validation of dto in controller level
