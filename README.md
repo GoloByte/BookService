@@ -16,6 +16,7 @@ Prototyping and example use Features of Java Spring, related frameworks and dock
     - explicit configuration for ignore deep mapping to avoid circular mapping calls
 
 - data persistence
+  - postgres db
   - relations
     - @OneToMany
     - @ManyToOne
