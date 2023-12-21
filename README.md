@@ -3,15 +3,15 @@
 Prototyping and use Features of Java Spring and related frameworks
 
 - rest controller : class Controller
-  - validation of dto
-  - file upload
-  - swagger api
+  - validation of dto in controller level
+  - file upload using multipartfile
+  - swagger api configuration
 
 - domain logic : class Core
-  - @Transactional
+  - @Transactional for all database related operations
   - use mapstruct to map EO to DTO
-  - csv file processing : class Importer
-  - concurrency pattern : class Borrow
+  - csv file processing, creation and persistence of cascade data structure   : class Importer
+  - concurrency pattern implementation for exclusive database record checkout : class Borrow
   - mapstruct use for cascade mapping of objects having OneToMany, ManyToMany relations
     - explicit configuration for ignore deep mapping to avoid circular mapping calls
 
@@ -20,6 +20,8 @@ Prototyping and use Features of Java Spring and related frameworks
     - @OneToMany
     - @ManyToOne
     - @ManyToMany
+    - cascade saving of structure with child and relation within objects
+    - LAZY loading fetch strategy
   - @Query using row lock and skip locked for concurrency pattern implementation
 
 - integration test
@@ -28,12 +30,15 @@ Prototyping and use Features of Java Spring and related frameworks
   - use H2 in-memory database
   - use @Transactional in H2 Database tests to rollback database after test execution
 
+- docker deployment
+  - compose file for application and database
+
 - sonarQube
-  - use local sonarQube https://www.baeldung.com/sonar-qube
+  - use local sonarQube configured according https://www.baeldung.com/sonar-qube
   - clean verify sonar:sonar -Dsonar.projectKey=BookService -Dsonar.projectName='BookService'
     -Dsonar.host.url=http://localhost:9001 -Dsonar.token=sonar_token -f pom.xml
 
-## 1. Setup local dev
+## 1. Setup local development environment
 
 ### 1.1 Database
 
@@ -48,7 +53,7 @@ copy target/application.jar to src/main/docker
     - run docker-compose build
     - run docker-compose up
 
-## 3. Table join
+## 3. Table join example
 
 SELECT
 b.id AS book_id,
