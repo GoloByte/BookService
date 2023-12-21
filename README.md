@@ -26,7 +26,14 @@ Prototyping and example use Features of Java Spring, related frameworks and dock
   - database setup using flyway
   - @Query using row lock and skip locked for concurrency pattern implementation
 
+- Initial Data Setup
+  - class InitialDataSetup triggers the data import on application startup
+  - using profile "import" ( --spring.profiles.active=import ) which ist set in application.yml
+  - call the data import in asynchronous way calling importBooksAsync
+  - integration tests will don't call it, because they are running with profile "test"
+
 - integration test
+  - using profile "test"
   - controller test using spring rest client
   - controller test using MockMvc
   - use H2 in-memory database

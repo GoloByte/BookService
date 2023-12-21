@@ -24,13 +24,14 @@ import java.util.*;
 @Component
 @AllArgsConstructor
 @Transactional
-public class Import {
+public class Importer {
 
     private final BookRepository bookRepository;
     private final ChargeRepository chargeRepository;
     private final AuthorRepository authorRepository;
     private final ChargeMapper chargeMapper;
 
+    @Transactional
     public Charge importBooks(InputStream inputStream) {
         log.info("import started ...");
         Instant importedOn = Instant.now();
@@ -65,8 +66,8 @@ public class Import {
                                 List<String> authors = books.get(finalBookName);
                                 if (authors != null) {
                                     authors.add(authorName);
+                                    log.info("added authorName " + authorName + " to book " + finalBookName);
                                 }
-                                log.info("added authorName " + authorName + " to book " + finalBookName);
                             });
                         } else {
                             rowScanner.next();

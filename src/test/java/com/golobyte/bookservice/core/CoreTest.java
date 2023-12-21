@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.mock.web.MockMultipartFile;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ResourceUtils;
@@ -27,6 +28,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @TestPropertySource(properties = {"spring.datasource.url=jdbc:h2:mem:golo-book-service-db"})
 @SpringBootTest
+@ActiveProfiles("test")
 class CoreTest {
     @Autowired private Core core;
     @Autowired private BookRepository bookRepository;

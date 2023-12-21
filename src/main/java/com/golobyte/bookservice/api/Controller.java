@@ -53,7 +53,7 @@ public class Controller {
      *
      * @return list of Charge
      */
-    @GetMapping("charges")
+    @GetMapping("books")
     public List<Book> getBooks() {
         return core.getBooks();
     }

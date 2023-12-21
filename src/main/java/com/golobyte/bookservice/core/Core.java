@@ -11,19 +11,22 @@ import com.golobyte.bookservice.data.BookRepository;
 import com.golobyte.bookservice.data.ChargeRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 @Slf4j
 @Component
 @AllArgsConstructor
 public class Core {
     private final Borrow borrow;
-    private final Import anImport;
+    private final Importer importer;
 
     private final ChargeRepository chargeRepository;
     private final BookRepository bookRepository;
@@ -33,14 +36,23 @@ public class Core {
     private final AuthorMapper authorMapper;
     private final BookMapper bookMapper;
 
-    @Transactional()
     public Charge importBooks(MultipartFile file) {
         try {
-            return anImport.importBooks(file.getInputStream());
+            return importer.importBooks(file.getInputStream());
         } catch (IOException e) {
             throw new IllegalStateException(e);
         }
     }
+
+    @Async
+    public CompletableFuture<Charge> importBooksAsync(InputStream inputStream) {
+        log.info("CompletableFuture.supplyAsync");
+        return CompletableFuture.supplyAsync(() -> {
+            log.info("CompletableFuture.supplyAsync -> importer.importBooks");
+            return importer.importBooks(inputStream);
+        });
+    }
+
     @Transactional()
     public List<Charge> getCharges() {
         return chargeRepository.findAll()
@@ -69,6 +81,7 @@ public class Core {
         return borrow.borrow(number);
     }
 
+    @Transactional()
     public List<Book> getBooks() {
         return bookRepository.findAll()
                 .stream()
