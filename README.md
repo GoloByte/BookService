@@ -1,6 +1,6 @@
 # BookService
 
-Prototyping and use Features of Java Spring and related frameworks
+Prototyping and example use Features of Java Spring, related frameworks and docker deployment
 
 - rest controller : class Controller
   - validation of dto in controller level
@@ -41,22 +41,26 @@ Prototyping and use Features of Java Spring and related frameworks
   - clean verify sonar:sonar -Dsonar.projectKey=BookService -Dsonar.projectName='BookService'
     -Dsonar.host.url=http://localhost:9001 -Dsonar.token=sonar_token -f pom.xml
 
-## 1. Setup local development environment
+## 1. Database diagram
 
-### 1.1 Database
+![img.png](img.png)
+
+## 2. Setup local development environment
+
+### 2.1 Database
 
 ```
 docker run -d --name golo-book-service-db-dev -e TZ=UTC -p 31432:5432 -e POSTGRES_DB=golo-book-service-db -e POSTGRES_USER=golo -e POSTGRES_PASSWORD=qFkJj92N9A4E --restart=always postgres:15
 
 ```
 
-## 2. Deploy the Application and Database as docker container
+## 3. Deploy the Application and Database as docker container
 copy target/application.jar to src/main/docker
 - in terminal goto /src/main/docker
     - run docker-compose build
     - run docker-compose up
 
-## 3. Table join example
+## 4. Table join example
 
 SELECT
 b.id AS book_id,
