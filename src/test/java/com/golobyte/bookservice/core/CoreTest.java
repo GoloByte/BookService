@@ -37,6 +37,8 @@ class CoreTest {
 
     @BeforeEach
     void setUp() {
+        // only needed if test is running using postgres
+        // when use H2, @Transactional in test method cause the rollback after each execution
         bookRepository.deleteAll();
         chargeRepository.deleteAll();
     }
