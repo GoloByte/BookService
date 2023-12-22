@@ -29,7 +29,13 @@ Developing Prototypes and Demonstrating Usage of Features in Java Spring, Associ
 - initial data setup
   - class InitialDataSetup triggers the data import on application startup
   - using profile "import" ( --spring.profiles.active=import ) which ist set in application.yml
-  - call the data import in asynchronous way calling importBooksAsync
+  - call the data import in asynchronous way calling
+    - CompletableFuture.supplyAsync(() -> {
+
+      return importer.importBooks(inputStream);
+
+      });
+    
   - integration tests will don't call it, because they are running with profile "test"
 
 - integration test

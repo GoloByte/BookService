@@ -34,6 +34,17 @@ public class Importer {
     @Transactional
     public Charge importBooks(InputStream inputStream) {
         log.info("import started ...");
+
+//        int i = 0;
+//        while(i<10){
+//            try {
+//                Thread.sleep(1000);
+//            } catch (InterruptedException e) {
+//                throw new RuntimeException(e);
+//            }
+//            log.info("Waiting " + i++);
+//        }
+
         Instant importedOn = Instant.now();
         Map<String, List<String>> books = new HashMap<>();
 
