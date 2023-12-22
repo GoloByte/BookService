@@ -25,6 +25,8 @@ public class InitialDataSetup implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
+        log.info("Commandline runner enter");
+
         try {
             String path = "/books/5books.csv";
             Resource resource = new ClassPathResource(path);
@@ -49,5 +51,6 @@ public class InitialDataSetup implements CommandLineRunner {
         } catch (Exception e) {
             log.error("Failed to load import file: " + e.getMessage());
         }
+        log.info("Commandline runner done");
     }
 }
