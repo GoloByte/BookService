@@ -21,7 +21,7 @@ Developing Prototypes and Demonstrating Usage of Features in Java Spring, Associ
     - @OneToMany
     - @ManyToOne
     - @ManyToMany
-    - cascade saving of structure with child and relation within objects
+    - cascade persist of structure with children and related objects
   - LAZY loading fetch strategy
   - database setup using flyway
   - @Query using row lock and skip locked for concurrency pattern implementation
@@ -30,7 +30,7 @@ Developing Prototypes and Demonstrating Usage of Features in Java Spring, Associ
   - class InitialDataSetup triggers the data import on application startup
   - using profile "import" ( --spring.profiles.active=import ) which ist set in application.yml
   - call the data import in asynchronous way calling
-    - CompletableFuture.supplyAsync(() -> {
+    * CompletableFuture.supplyAsync(() -> {
 
       return importer.importBooks(inputStream);
 
@@ -40,7 +40,7 @@ Developing Prototypes and Demonstrating Usage of Features in Java Spring, Associ
 
 - integration test
   - using profile "test"
-  - controller test using spring rest client
+  - real rest controller test using spring rest client
   - controller test using MockMvc
   - use H2 in-memory database
   - use @Transactional in H2 Database tests to rollback database after test execution
