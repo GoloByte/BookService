@@ -29,7 +29,8 @@ services:
       - POSTGRES_USER=golo
       - POSTGRES_PASSWORD=qFkJj92N9A4E
     restart: always
-
+    ports:
+      - "50202:5432"
     volumes:
       - golo-book-service-db-data:/var/lib/postgresql/data
     networks:

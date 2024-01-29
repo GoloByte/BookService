@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="golo-book-service-db@localhost" uuid="05f93cff-e96c-40b2-9f4b-64968ac69c52">
+    <data-source source="LOCAL" name="golo-book-service-db@localhost" uuid="5de8c61c-708e-4d90-afca-b1e857d11ef9">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://localhost:31432/golo-book-service-db</jdbc-url>
+      <jdbc-url>jdbc:postgresql://localhost:50202/golo-book-service-db</jdbc-url>
       <jdbc-additional-properties>
         <property name="com.intellij.clouds.kubernetes.db.host.port" />
         <property name="com.intellij.clouds.kubernetes.db.enabled" value="false" />
