@@ -29,6 +29,8 @@ services:
       - POSTGRES_USER=golo
       - POSTGRES_PASSWORD=qFkJj92N9A4E
     restart: always
+# publishing database port demonstrates only the possibility to have access from outside the application
+# inside application it will use the internal port, no publishing needed
     ports:
       - "50202:5432"
     volumes:
