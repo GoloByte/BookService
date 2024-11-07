@@ -23,7 +23,7 @@ import java.util.List;
 @RestController
 @AllArgsConstructor
 @RequestMapping(value = "/books", produces = MediaType.APPLICATION_JSON_VALUE)
-public class BooksController {
+public class BookController {
 
     private final BookLibrary booksLibrary;
     /**

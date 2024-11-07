@@ -20,7 +20,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @TestPropertySource(properties = {"spring.datasource.url=jdbc:h2:mem:golo-book-service-db"})
-class BooksControllerAsMockMvcTest {
+class BookControllerAsMockMvcTest {
 
     private MockMvc mockMvc;
 
@@ -28,12 +28,12 @@ class BooksControllerAsMockMvcTest {
     private BookLibrary booksLibrary;
 
     @InjectMocks
-    private BooksController booksController;
+    private BookController bookController;
 
     @BeforeEach
     public void setup() {
         MockitoAnnotations.openMocks(this);
-        this.mockMvc = MockMvcBuilders.standaloneSetup(booksController).build();
+        this.mockMvc = MockMvcBuilders.standaloneSetup(bookController).build();
     }
 
     @Test
