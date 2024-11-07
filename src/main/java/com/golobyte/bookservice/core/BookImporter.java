@@ -24,7 +24,7 @@ import java.util.*;
 @Component
 @AllArgsConstructor
 @Transactional
-public class Importer {
+public class BookImporter {
 
     private final BookRepository bookRepository;
     private final ChargeRepository chargeRepository;
@@ -34,16 +34,6 @@ public class Importer {
     @Transactional
     public Charge importBooks(InputStream inputStream) {
         log.info("import started ...");
-
-//        int i = 0;
-//        while(i<10){
-//            try {
-//                Thread.sleep(1000);
-//            } catch (InterruptedException e) {
-//                throw new RuntimeException(e);
-//            }
-//            log.info("Waiting " + i++);
-//        }
 
         Instant importedOn = Instant.now();
         Map<String, List<String>> books = new HashMap<>();
@@ -77,7 +67,7 @@ public class Importer {
                                 List<String> authors = books.get(finalBookName);
                                 if (authors != null) {
                                     authors.add(authorName);
-                                    log.info("added authorName " + authorName + " to book " + finalBookName);
+                                    log.info("added authorName {} to book {}", authorName, finalBookName);
                                 }
                             });
                         } else {

@@ -3,7 +3,7 @@ package com.golobyte.bookservice.api;
 import com.golobyte.bookservice.api.dto.Author;
 import com.golobyte.bookservice.api.dto.Book;
 import com.golobyte.bookservice.api.dto.Charge;
-import com.golobyte.bookservice.core.Core;
+import com.golobyte.bookservice.core.BookLibrary;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.constraints.Max;
@@ -23,9 +23,9 @@ import java.util.List;
 @RestController
 @AllArgsConstructor
 @RequestMapping(value = "/books", produces = MediaType.APPLICATION_JSON_VALUE)
-public class Controller {
+public class BooksController {
 
-    private final Core core;
+    private final BookLibrary booksLibrary;
     /**
      * import a books source file in database
      *
@@ -35,7 +35,7 @@ public class Controller {
     @PostMapping(value = "import", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
     @Operation( summary = "Import books", description = "import and store books in the database")
     public Charge importBooks(@RequestParam("file") MultipartFile file) {
-        return core.importBooks(file);
+        return booksLibrary.importBooks(file);
     }
 
     /**
@@ -45,7 +45,7 @@ public class Controller {
      */
     @GetMapping("charges")
     public List<Charge> getCharges() {
-        return core.getCharges();
+        return booksLibrary.getCharges();
     }
 
     /**
@@ -55,7 +55,7 @@ public class Controller {
      */
     @GetMapping("books")
     public List<Book> getBooks() {
-        return core.getBooks();
+        return booksLibrary.getBooks();
     }
 
     /**
@@ -65,7 +65,7 @@ public class Controller {
      */
     @GetMapping("authors")
     public List<Author> getAuthors() {
-        return core.getAuthors();
+        return booksLibrary.getAuthors();
     }
 
     /**
@@ -75,7 +75,7 @@ public class Controller {
      */
     @GetMapping("available-books-number")
     public long getAvailableNumbers() {
-        return core.getNumberOfAvailableBooks();
+        return booksLibrary.getNumberOfAvailableBooks();
     }
 
 
@@ -87,6 +87,6 @@ public class Controller {
      */
     @GetMapping("borrow")
     public List<Book> borrow(@RequestParam("number") @Min(1) @Max(5) int number) {
-        return core.borrow(number);
+        return booksLibrary.borrow(number);
     }
 }

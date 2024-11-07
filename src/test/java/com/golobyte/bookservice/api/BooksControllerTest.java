@@ -22,7 +22,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 @TestPropertySource(properties = {"spring.datasource.url=jdbc:h2:mem:golo-book-service-db"})
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ActiveProfiles("test")
-class ControllerTest {
+class BooksControllerTest {
 
     @LocalServerPort
     long port;

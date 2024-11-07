@@ -29,8 +29,8 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 @TestPropertySource(properties = {"spring.datasource.url=jdbc:h2:mem:golo-book-service-db"})
 @SpringBootTest
 @ActiveProfiles("test")
-class CoreTest {
-    @Autowired private Core core;
+class BookLibraryTest {
+    @Autowired private BookLibrary bookLibrary;
     @Autowired private BookRepository bookRepository;
     @Autowired private ChargeRepository chargeRepository;
 
@@ -46,41 +46,41 @@ class CoreTest {
     @Test
     @Transactional
     void getCharges() {
-        assertThat(core.getCharges()).hasSize(0);
+        assertThat(bookLibrary.getCharges()).isEmpty();
     }
 
     @Test
     @Transactional
     void importBooks() throws Exception {
-        assertThat(core.getCharges()).hasSize(0);
+        assertThat(bookLibrary.getCharges()).isEmpty();
 
         // GIVEN: source of 5 books
         String booksSource = "/books/5books.csv";
         MultipartFile file = getFileFromResource(booksSource);
         // WHEN: import of the book source
-        Charge charge = core.importBooks(file);
+        Charge charge = bookLibrary.importBooks(file);
 
         // THEN: number of imported books should be 5
         assertThat(charge.getImportedCount()).isEqualTo(5);
         assertThat(charge.getImportedOn()).isNotNull();
-        assertThat(core.getNumberOfAvailableBooks()).isEqualTo(5);
+        assertThat(bookLibrary.getNumberOfAvailableBooks()).isEqualTo(5);
 
         // WHEN: borrow 2 books
-        List<Book> books = core.borrow(2);
+        List<Book> books = bookLibrary.borrow(2);
         // THEN: number of borrowed books should be 2, books are marked as borrowed
         assertThat(books).hasSize(2);
         assertThat(books.getFirst().getName()).isNotEmpty();
         assertThat(books.getFirst().isBorrowed()).isTrue();
         // THEN: number of available books should be 3
-        assertThat(core.getNumberOfAvailableBooks()).isEqualTo(3);
+        assertThat(bookLibrary.getNumberOfAvailableBooks()).isEqualTo(3);
 
         // WHEN: borrow 4 books, exception should be thrown
-        assertThatThrownBy(() -> core.borrow(4)).isInstanceOf(IllegalStateException.class);
+        assertThatThrownBy(() -> bookLibrary.borrow(4)).isInstanceOf(IllegalStateException.class);
 
-        Charge chargeLoaded = core.getCharges().getFirst();
+        Charge chargeLoaded = bookLibrary.getCharges().getFirst();
         assertThat(chargeLoaded.getBooks()).hasSize(5);
 
-        List<Author> authors = core.getAuthors();
+        List<Author> authors = bookLibrary.getAuthors();
         assertThat(authors).hasSize(3);
 
     }

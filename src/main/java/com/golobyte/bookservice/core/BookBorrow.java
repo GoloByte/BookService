@@ -13,7 +13,7 @@ import java.util.List;
 @Slf4j
 @Component
 @AllArgsConstructor
-public class Borrow {
+public class BookBorrow {
     private final BookRepository bookRepository;
     private final BookMapper bookMapper;
 

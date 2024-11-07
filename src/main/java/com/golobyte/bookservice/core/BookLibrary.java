@@ -21,9 +21,9 @@ import java.util.List;
 @Slf4j
 @Component
 @AllArgsConstructor
-public class Core {
-    private final Borrow borrow;
-    private final Importer importer;
+public class BookLibrary {
+    private final BookBorrow bookBorrow;
+    private final BookImporter bookImporter;
 
     private final ChargeRepository chargeRepository;
     private final BookRepository bookRepository;
@@ -36,7 +36,7 @@ public class Core {
     @Transactional()
     public Charge importBooks(MultipartFile file) {
         try {
-            return importer.importBooks(file.getInputStream());
+            return bookImporter.importBooks(file.getInputStream());
         } catch (IOException e) {
             throw new IllegalStateException(e);
         }
@@ -68,7 +68,7 @@ public class Core {
 
     @Transactional()
     public List<Book> borrow(int number) {
-        return borrow.borrow(number);
+        return bookBorrow.borrow(number);
     }
 
     @Transactional()

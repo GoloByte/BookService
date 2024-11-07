@@ -15,12 +15,10 @@ import java.util.concurrent.CompletableFuture;
 @Profile("import")
 public class InitialDataSetup implements CommandLineRunner {
 
-    private final Core core;
-    private final Importer importer;
+    private final BookImporter bookImporter;
 
-    public InitialDataSetup(Core core, Importer importer) {
-        this.core = core;
-        this.importer = importer;
+    public InitialDataSetup(BookLibrary booksLibrary, BookImporter bookImporter) {
+        this.bookImporter = bookImporter;
     }
 
     @Override
@@ -31,25 +29,25 @@ public class InitialDataSetup implements CommandLineRunner {
             String path = "/books/5books.csv";
             Resource resource = new ClassPathResource(path);
             InputStream inputStream = resource.getInputStream();
-            log.info("Fire in the Main Thread the Async Books Import for file : " + path);
+            log.info("Fire in the Main Thread the Async Books Import for file : {}", path);
             CompletableFuture.supplyAsync(() -> {
                         log.info("Execute in Worker Tread the importer.importBooks()");
-                        return importer.importBooks(inputStream);
+                        return bookImporter.importBooks(inputStream);
                     })
                     .thenAccept(charge -> {
                         // Handle successful import
                         if (!charge.getBooks().isEmpty()) {
-                            log.info("Import successful and data is imported: " + charge);
+                            log.info("Import successful and data is imported: {}", charge);
                         } else {
-                            log.info("Import completed successfully, but no new data was imported as it already exists in the database: " + charge);
+                            log.info("Import completed successfully, but no new data was imported as it already exists in the database: {}", charge);
                         }
                     }).exceptionally(ex -> {
                         // Handle exceptions
-                        log.error("Import failed: " + ex.getMessage());
+                    log.error("Import failed: {}", ex.getMessage());
                         return null;
                     });
         } catch (Exception e) {
-            log.error("Failed to load import file: " + e.getMessage());
+            log.error("Failed to load import file: {}", e.getMessage());
         }
         log.info("Commandline runner done");
     }

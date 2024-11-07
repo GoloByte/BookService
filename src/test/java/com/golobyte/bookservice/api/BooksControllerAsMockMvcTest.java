@@ -1,7 +1,7 @@
 package com.golobyte.bookservice.api;
 
 import com.golobyte.bookservice.api.dto.Charge;
-import com.golobyte.bookservice.core.Core;
+import com.golobyte.bookservice.core.BookLibrary;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -20,20 +20,20 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @TestPropertySource(properties = {"spring.datasource.url=jdbc:h2:mem:golo-book-service-db"})
-class ControllerAsMockMvcTest {
+class BooksControllerAsMockMvcTest {
 
     private MockMvc mockMvc;
 
     @Mock
-    private Core core;
+    private BookLibrary booksLibrary;
 
     @InjectMocks
-    private Controller controller;
+    private BooksController booksController;
 
     @BeforeEach
     public void setup() {
         MockitoAnnotations.openMocks(this);
-        this.mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
+        this.mockMvc = MockMvcBuilders.standaloneSetup(booksController).build();
     }
 
     @Test
@@ -43,7 +43,7 @@ class ControllerAsMockMvcTest {
                 MediaType.MULTIPART_FORM_DATA_VALUE, inputStream);
 
 
-        when(core.importBooks(file)).thenReturn(new Charge());
+        when(booksLibrary.importBooks(file)).thenReturn(new Charge());
 
         mockMvc.perform(multipart("/books/import")
                         .file("file", "content".getBytes()))
