@@ -17,22 +17,22 @@ public class BookBorrow {
     private final BookRepository bookRepository;
     private final BookMapper bookMapper;
 
-    public List<Book> borrow(int number) {
+    public List<Book> borrow(int numberOfBooks) {
 
-        List<BookEo> booksEoFound = bookRepository.borrow(number);
+        List<BookEo> booksEoFound = bookRepository.borrow(numberOfBooks);
 
-        if (booksEoFound.size() < number) {
+        if (booksEoFound.size() < numberOfBooks) {
             throw new IllegalStateException("Number of books is not available");
         }
 
-        List<BookEo> booksEoToUpdate = booksEoFound.stream()
+        List<BookEo> booksForBorrow = booksEoFound.stream()
                 .peek(booksEo -> {
                     booksEo.setBorrowed(true);
                 }).toList();
 
-        List<BookEo> booksUpdated = bookRepository.saveAll(booksEoToUpdate);
+        List<BookEo> borrowedBooks = bookRepository.saveAll(booksForBorrow);
 
-        return booksUpdated
+        return borrowedBooks
                 .stream()
                 .map(bookMapper::map)
                 .toList();

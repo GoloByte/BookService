@@ -17,7 +17,7 @@ public class InitialDataSetup implements CommandLineRunner {
 
     private final BookImporter bookImporter;
 
-    public InitialDataSetup(BookLibrary booksLibrary, BookImporter bookImporter) {
+    public InitialDataSetup(BookImporter bookImporter) {
         this.bookImporter = bookImporter;
     }
 
